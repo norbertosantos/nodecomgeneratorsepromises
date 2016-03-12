@@ -1,0 +1,61 @@
+<html>
+<head>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/forms.css">
+</head>
+<body>
+    <div>
+        <div class ="container min-container">
+            <h2 class="basic-title">Add</h2>
+            
+            <!-- LISTA DE ERROS -->
+            <% if(locals.validationErrors){%>
+            <ul class="list-unstyled">
+                <% for(var i=0; i < validationErrors.length;i++) { %>
+                    <li class="alert alert-danger"><%=validationErrors[i].msg%></li>
+                <% } %>
+            </ul>
+            <% } %>
+            <!-- FORM DE PRODUTOS -->  
+            <% 
+                var metodo;
+                if (produto.id){
+                    metodo = "put";
+                }else {
+                    metodo = "post";
+                }
+
+            %>  
+            <form action="/produtos" method="POST" class="well" role="form">
+                <input type="hidden" name="id" value="<%=produto.id%>">
+                <input type="hidden" name="_method" value="<%=metodo%>"> 
+                <div class="form-group">
+                    <label for="titulo">Titulo</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-unchecked"></i></span>
+                        <input type="text" name="titulo" placeholder="titulo do livro" value="<%=produto.titulo%>"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="preco">Preço</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-unchecked"></i></span>
+                        <input type="text" name="preco" placeholder="valor do livro" value="<%=produto.preco%>"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="descricao">Descricao</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-unchecked"></i></span>
+                        <textarea name="descricao"><%=produto.descricao%></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Gravar</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+

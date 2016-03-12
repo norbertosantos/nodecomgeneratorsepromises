@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width">
+	<meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/forms.css">
+</head>
+<body>
+	<div>
+        <div class ="container min-container">
+            <h2 class="basic-title">Add</h2>
+            
+            <!-- LISTA DE ERROS -->
+            <% if(locals.validationErrors){%>
+            <ul class="list-unstyled">
+                <% for(var i=0; i < validationErrors.length;i++) { %>
+                    <li class="alert alert-danger"><%=validationErrors[i].msg%></li>
+                <% } %>
+            </ul>
+            <% } %>
+            <!-- FORM DE PROMOCOES -->    
+            <form action="/promocoes" method="post" class="well" role="form">
+                <div class="form-group">
+                    <label for="titulo">Descrição</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-unchecked"></i></span>
+                        <input type="text" name="descricao" placeholder="descrição da promoção" value="<%=promocao.descricao%>"/>
+                    </div>
+                </div>
+                    <button type="submit" class="btn btn-primary">Gravar</button>
+            </form>
+        </div>
+    </div>	
+</body>
+</html>	
